@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { MapPin } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import BookingForm from "@/components/services/BookingForm";
 
-export default function ServiceDetailsPage() {
+function ServiceDetails() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { data: session, isPending } = useSession();
@@ -107,5 +107,19 @@ export default function ServiceDetailsPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function ServiceDetailsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <Skeleton className="h-96 w-full" />
+        </div>
+      }
+    >
+      <ServiceDetails />
+    </Suspense>
   );
 }
