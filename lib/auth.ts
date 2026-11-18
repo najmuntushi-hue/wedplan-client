@@ -25,7 +25,7 @@ export const auth = betterAuth({
       role: {
         type: "string",
         defaultValue: "customer",
-        input: true, // signup e customer/vendor pathate hobe, nicher hook e validate korbo
+        input: true, 
       },
       isBlocked: { type: "boolean", defaultValue: false, input: false },
       businessName: { type: "string", required: false, input: true },
@@ -37,7 +37,7 @@ export const auth = betterAuth({
     user: {
       create: {
         before: async (user) => {
-          // Public signup e kokhono admin hobe na
+          
           const role = (user as any).role === "vendor" ? "vendor" : "customer";
           return { data: { ...user, role } };
         },
