@@ -1,7 +1,17 @@
+import Hero from "@/components/home/Hero";
+import FeaturedServices from "@/components/home/FeaturedServices";
+import Categories from "@/components/home/Categories";
+import WhyChoose from "@/components/home/WhyChoose";
+import HowItWorks from "@/components/home/HowItWorks";
+
 export default function HomePage() {
   return (
-    <section className="flex min-h-[60vh] items-center justify-center bg-rose-50">
-      <h1 className="text-4xl font-bold text-rose-600">WedPlan Home (coming soon)</h1>
-    </section>
+    <>
+      <Hero />
+      <FeaturedServices />
+      <Categories />
+      <WhyChoose />
+      <HowItWorks />
+    </>
   );
 }
