@@ -19,8 +19,8 @@ export async function uploadImage(file: File): Promise<string> {
   const fd = new FormData();
   fd.append("image", file);
   const res = await fetch(`${API}/upload`, { method: "POST", body: fd });
-  if (!res.ok) throw new Error("Image upload failed");
-  const data = await res.json();
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.message || "Image upload failed");
   return data.url as string;
 }
 
