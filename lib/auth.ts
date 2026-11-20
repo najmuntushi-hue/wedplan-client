@@ -20,12 +20,18 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     },
   },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
   user: {
     additionalFields: {
       role: {
         type: "string",
         defaultValue: "customer",
-        input: true, 
+        input: true,
       },
       isBlocked: { type: "boolean", defaultValue: false, input: false },
       businessName: { type: "string", required: false, input: true },
@@ -37,7 +43,7 @@ export const auth = betterAuth({
     user: {
       create: {
         before: async (user) => {
-          
+          // Public signup can never create an admin
           const role = (user as any).role === "vendor" ? "vendor" : "customer";
           return { data: { ...user, role } };
         },
