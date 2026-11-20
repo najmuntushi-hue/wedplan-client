@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WedPlan - Wedding Planning Platform
 
-## Getting Started
+WedPlan is a role-based wedding planning platform. Customers discover wedding services and request bookings, vendors publish services and manage requests (with a Premium subscription for unlimited listings), and admins moderate users, services and transactions.
 
-First, run the development server:
+## Live Website
+
+- Live site: https://YOUR-CLIENT.vercel.app
+
+## Repositories
+
+- Client: https://github.com/najmuntushi-hue/wedplan-client
+- Server: https://github.com/najmuntushi-hue/wedplan-server
+
+## Important Features
+
+**Customer**
+- Browse, search, filter (category, location) and sort (price asc/desc) services
+- View service details and submit booking requests
+- Track and cancel pending bookings
+- Customer dashboard with booking stats
+
+**Vendor**
+- Add, update, delete services (images uploaded via ImgBB)
+- Manage availability and see approval status
+- Accept or reject booking requests (pending only)
+- Free plan: max 3 active services; Premium: unlimited
+- Upgrade to Premium with Stripe Checkout (activated only by verified webhook)
+
+**Admin**
+- Manage users (search, role filter, block/unblock)
+- Approve, reject and delete services
+- View platform transactions (read-only)
+
+**Platform**
+- Better Auth (email/password + Google)
+- JWT verification and server-side role checks on all protected APIs
+- Responsive UI with Framer Motion (Motion) animations, toast notifications, loading/empty/error states
+
+## Technology Stack
+
+Next.js (App Router), TypeScript, Tailwind CSS, ShadCN UI, Motion, Better Auth, MongoDB, Express.js, Stripe Checkout, ImgBB, Zod
+
+## Installation
+
+```bash
+git clone https://github.com/najmuntushi-hue/wedplan-client.git
+cd wedplan-client
+npm install
+```
+
+## Run Locally
+
+1. Copy `.env.example` to `.env.local` and fill in the values.
+2. Start the server project first (see the server README).
+3. Run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app runs at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local` (never commit it):
 
-## Learn More
+```env
+MONGODB_URI=
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=
+NEXT_PUBLIC_APP_URL=
+NEXT_PUBLIC_API_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Required Application URLs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Purpose | Local | Production |
+|---|---|---|
+| Client | http://localhost:3000 | https://YOUR-CLIENT.vercel.app |
+| Server API | http://localhost:5000 | https://YOUR-SERVER-URL |
+| Google redirect URI | http://localhost:3000/api/auth/callback/google | https://YOUR-CLIENT.vercel.app/api/auth/callback/google |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Admin Access
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Admin accounts cannot be created through public sign up. Create a normal account, then promote it with the server seed script (`npm run seed:admin`).
