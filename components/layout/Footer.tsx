@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2 text-xl font-bold text-rose-600">
-            <Heart className="h-5 w-5 fill-rose-600" /> WedPlan
+            <img src="/logo.jfif" alt="WedPlan logo" className="h-9 w-auto" /> WedPlan
           </Link>
           <p className="mt-3 text-sm text-muted-foreground">
             Discover trusted wedding vendors and plan your perfect day in one place.

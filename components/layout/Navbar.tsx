@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Heart, LayoutDashboard, LogOut, Settings, Menu } from "lucide-react";
+import { LayoutDashboard, LogOut, Settings, Menu } from "lucide-react";
 import { useSession, signOut } from "@/lib/auth-client";
 import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -41,7 +41,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-rose-600">
-          <Heart className="h-5 w-5 fill-rose-600" /> WedPlan
+          <img src="/logo.jfif" alt="WedPlan logo" className="h-9 w-auto" /> WedPlan
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
