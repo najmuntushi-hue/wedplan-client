@@ -4,7 +4,7 @@ WedPlan is a role-based wedding planning platform. Customers discover wedding se
 
 ## Live Website
 
-- Live site: https://YOUR-CLIENT.vercel.app
+- Live site: https://wedplan-client-wine.vercel.app/
 
 ## Repositories
 
@@ -78,10 +78,9 @@ GOOGLE_CLIENT_SECRET=
 
 | Purpose | Local | Production |
 |---|---|---|
-| Client | http://localhost:3000 | https://YOUR-CLIENT.vercel.app |
-| Server API | http://localhost:5000 | https://YOUR-SERVER-URL |
-| Google redirect URI | http://localhost:3000/api/auth/callback/google | https://YOUR-CLIENT.vercel.app/api/auth/callback/google |
-
+| Client | http://localhost:3000 | https://wedplan-client-wine.vercel.app |
+| Server API | http://localhost:5000 | https://wedplan-server-4cye.onrender.com |
+| Google redirect URI | http://localhost:3000/api/auth/callback/google | https://wedplan-client-wine.vercel.app/api/auth/callback/google |
 ## Admin Access
 
 Admin accounts cannot be created through public sign up. Create a normal account, then promote it with the server seed script (`npm run seed:admin`).
