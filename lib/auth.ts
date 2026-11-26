@@ -3,11 +3,18 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { jwt } from "better-auth/plugins";
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI!, {
-  serverSelectionTimeoutMS: 8000,
-  maxPoolSize: 5,
-  family: 4,
-});
+const globalForMongo = globalThis as unknown as { _mongoClient?: MongoClient };
+
+const client =
+  globalForMongo._mongoClient ??
+  new MongoClient(process.env.MONGODB_URI!, {
+    serverSelectionTimeoutMS: 20000,
+    connectTimeoutMS: 20000,
+    maxPoolSize: 5,
+    family: 4,
+  });
+
+globalForMongo._mongoClient = client;
 const db = client.db("wedplan");
 
 const appUrl =
